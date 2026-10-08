@@ -1,6 +1,19 @@
+import { useSelector } from 'react-redux';
 import { backgroundIconsData } from '../data/hereBackgroundIconsData';
-
+import type { RootState } from '../utils/appStore';
+import { useNavigate } from 'react-router';
 export default function Hero() {
+  const user = useSelector((store: RootState) => store.user.user);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (!user) {
+      navigate('/auth/signup');
+    }
+    else{
+      navigate('/feed')
+    }
+  };
   return (
     <section className="min-h-[80vh] relative flex items-center justify-center text-center ">
       <div className="flex flex-col relative z-10  gap-[20px]">
@@ -15,7 +28,9 @@ export default function Hero() {
           </span>{' '}
         </h1>
         <div>
-          <button className="cursor-pointer bg-[#141414] text-white rounded-md max-w-[200px] w-full px-6 py-3 border-[1px] hover:bg-[#41d87e] hover:text-white border-white">
+          <button
+            onClick={handleClick}
+            className="cursor-pointer bg-[#141414] text-white rounded-md max-w-[200px] w-full px-6 py-3 border-[1px] hover:bg-[#41d87e] hover:text-white border-white">
             Get Started
           </button>
         </div>
