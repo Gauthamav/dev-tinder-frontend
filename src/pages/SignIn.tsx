@@ -7,9 +7,10 @@ import { BASE_URL } from '../utils/constants';
 export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>('samaltman@gmail.com');
-  const [password, setPassword] = useState<string>('Samaltman@123');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [buttonDisable, setButtonDisable] = useState<boolean>(false);
+
   const [error, setError] = useState('');
   const handleClick = async () => {
     setError('');
@@ -65,7 +66,7 @@ export default function SignIn() {
               Match
               <span className="text-[#41d87e]  "> Merge </span> Build
             </p>
-            <label className=" mt-5 text-sm">Email Id</label>
+            <label className="  text-sm">Email Id</label>
             <input
               type="email"
               value={email}
@@ -77,12 +78,13 @@ export default function SignIn() {
               placeholder="Enter your email "
               className="h-[45px] outline-none  border-[1px] pl-[10px] border-gray-200 rounded-lg border-"></input>
 
-            <label className="text-sm mt-5">Password</label>
+            <label className="text-sm ">Password</label>
             <input
               type="password"
               value={password}
+              autoComplete="current-password"
               maxLength={80}
-              placeholder="Enter your password "
+              placeholder="Enter your password"
               onChange={e => {
                 const inputPassword = e.target.value.replace(/[^A-Za-z0-9@.]/g, '');
                 setPassword(inputPassword.trim());
@@ -100,6 +102,14 @@ export default function SignIn() {
               <span className="text-sm text-gray-300">or</span>
               <hr className="border-t w-full border-gray-300" />
             </div>
+            <Link to="/auth/signup">
+              <button
+                disabled={buttonDisable}
+                className="w-full rounded-md border border-white bg-[#141414] px-6 py-3 text-center text-white cursor-pointer hover:bg-[#41d87e] disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-300 disabled:hover:bg-gray-400">
+                SignUp
+              </button>
+            </Link>
+
             <Link to="/">
               <button
                 disabled={buttonDisable}

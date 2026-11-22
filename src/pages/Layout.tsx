@@ -33,7 +33,6 @@ export default function Layout() {
 
   useEffect(() => {
     if (!user) {
-      console.log('hello')
       fetchUser();
     }
   }, []);

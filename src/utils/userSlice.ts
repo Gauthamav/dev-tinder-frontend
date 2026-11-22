@@ -6,7 +6,9 @@ type User = {
   photoUrl: string;
   age: string;
   gender: string;
- emailId: string;
+  about: string;
+  occupation: string;
+  emailId: string;
 };
 type UserState = {
   user: User | null;
